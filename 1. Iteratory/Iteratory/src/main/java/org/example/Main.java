@@ -1,36 +1,41 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
 
-//        ArrayList<Student> students = new ArrayList<>();
-//        students.add(new Student(252111, "Jan", "Kowalski", 4.75));
-//        students.add(new Student(212333, "Adam", "Nowak", 3));
-//
-//        StudentList studentList = new StudentList(students);
+    private static void demo() {
+        Scanner scanner = new Scanner(System.in);
+        String baseFilePath = "input/";
 
-//        studentList.printAllStudents();
-//        System.out.println();
-//
-//        studentList.printStudentsBetterThan(4);
-//        System.out.println();
-//
-//        studentList.changeStudentGrateAvg(212333, 4.5);
-//        studentList.printAllStudents();
-//
-//        StudentList newStudentList = studentList.getStudentsBetterThanAlt(3);
-//        newStudentList.changeStudentGrateAvg(252111, 7);
-//        newStudentList.printAllStudents();
-//
-//        System.out.println();
-//        studentList.printAllStudents();
+        System.out.println("Prosze podac nazwe pliku w folderze 'input', ktory ma zostac wczytany");
+        String fileName = scanner.nextLine();
+        scanner.close();
 
-        StudentList studentList = StudentList.fromFile("input/sample.txt");
+        StudentList studentList = StudentList.fromFile(baseFilePath + fileName);
+
+        System.out.println("\nOto lista wszystkich studentow wczytanych z pliku:");
         studentList.printAllStudents();
 
+        System.out.println("\nWyswietlamy studentow o sredniej ocen wyzszej niz podana w parametrze (przykladowy parametr = 4)");
+        studentList.printStudentsBetterThan(4);
+
+        System.out.println("\nZmieniamy srednia ocen studenta o indeksie 654321 na 5.0 i wyswietlamy cala liste wszytskich studentow");
+        studentList.changeStudentGrateAvg(654321, 5);
+        studentList.printAllStudents();
+
+        System.out.println("\nTworzymy nowa liste studentow z ocenemi ponizej 3.0 i wyswietlamy ja");
+        StudentList studentsBelow3 = studentList.getStudentsBelow3();
+        studentsBelow3.printAllStudents();
+
+        System.out.println("\nTworzymy nowa liste studentow z ocenemi powyzej lub rowno 3.0 i wyswietlamy ja");
+        StudentList studentsAboveOrEquals3 = studentList.getStudentsAboveOrEquals3();
+        studentsAboveOrEquals3.printAllStudents();
+
     }
+
+    public static void main(String[] args) {
+        demo();
+    }
+
 }

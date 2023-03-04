@@ -1,12 +1,6 @@
 package org.example;
 
-import jdk.jshell.spi.ExecutionControl;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class StudentList {
 
@@ -29,12 +23,13 @@ public class StudentList {
 
         fileLines.forEach(x -> {
             String[] elements = x.split(" ");
-//            Arrays.asList(elements).subList(3).stream()
+            if (elements.length < 4) throw new AssertionError("Invalid file format");
+            double gratesSum = Arrays.asList(elements).subList(3, elements.length).stream().mapToDouble(Double::parseDouble).sum();
             students.add(new Student(
                     Integer.parseInt(elements[2].replaceAll("[()]", "")),
                     elements[1],
                     elements[0],
-                    (Double.parseDouble(elements[3]) + Double.parseDouble(elements[4]))/2
+                    gratesSum / (elements.length - 3)
             ));
         });
 
