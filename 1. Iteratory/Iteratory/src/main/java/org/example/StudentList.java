@@ -1,6 +1,9 @@
 package org.example;
 
+import jdk.jshell.spi.ExecutionControl;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +18,27 @@ public class StudentList {
 
     public void setStudentsList(ArrayList<Student> studentsList) {
         this.studentsList = studentsList;
+    }
+
+    public static StudentList fromFile(String path) {
+        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<String> fileLines = FileReader.getContentAsArray(path);
+
+        fileLines.remove(0);
+        fileLines.remove(0);
+
+        fileLines.forEach(x -> {
+            String[] elements = x.split(" ");
+//            Arrays.asList(elements).subList(3).stream()
+            students.add(new Student(
+                    Integer.parseInt(elements[2].replaceAll("[()]", "")),
+                    elements[1],
+                    elements[0],
+                    (Double.parseDouble(elements[3]) + Double.parseDouble(elements[4]))/2
+            ));
+        });
+
+        return new StudentList(students);
     }
 
     public void printAllStudents() {
@@ -99,7 +123,7 @@ public class StudentList {
     // Method for additional practice of another way to solve the problem
     public StudentList getStudentsBetterThanAlt(double minAvgGrate) {
         ArrayList<Student> newStudents = new ArrayList<>();
-        
+
         studentsList.stream()
                 .filter(x -> x.getAvgGrades() > minAvgGrate)
                 .forEach(x -> newStudents.add(new Student(
