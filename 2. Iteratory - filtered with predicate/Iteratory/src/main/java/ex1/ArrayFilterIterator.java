@@ -1,4 +1,4 @@
-package org.example;
+package ex1;
 
 import java.util.Iterator;
 

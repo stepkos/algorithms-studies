@@ -1,4 +1,4 @@
-package org.example;
+package ex1;
 
 public class Student {
     private final int index;
