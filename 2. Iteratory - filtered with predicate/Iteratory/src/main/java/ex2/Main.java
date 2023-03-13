@@ -21,6 +21,12 @@ public class Main {
             filterIterator.next();
         }
 
+//        filterIterator.last();
+//        while (!filterIterator.isDone()){
+//            System.out.println(filterIterator.current());
+//            filterIterator.previous();
+//        }
+
     }
 
     public static void main(String[] args) {
