@@ -10,7 +10,6 @@ public class StudentList {
         this.studentsList = studentsList;
     }
 
-
     public void printAllStudents() {
         ArrayIterator<Student> iter = new ArrayIterator<>(studentsList);
         while (iter.hasNext())
@@ -43,6 +42,5 @@ public class StudentList {
         while (iter.hasNext())
             iter.next().setAvgGrades(newGrateAvg);
     }
-
 
 }

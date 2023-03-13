@@ -6,7 +6,7 @@ public final class ArrayFilterIterator<T> implements Iterator<T> {
     private final Iterator<T> iterator;
     private final Predicate<T> predicate;
     private T elemNext = null;
-    private boolean bHasNext = true;
+    private boolean hasNextVal = true;
 
     public ArrayFilterIterator(Iterator<T> iterator, Predicate<T> predicate) {
         super();
@@ -22,13 +22,13 @@ public final class ArrayFilterIterator<T> implements Iterator<T> {
                 return;
             }
         }
-        bHasNext=false;
-        elemNext=null;
+        hasNextVal = false;
+        elemNext = null;
     }
 
     @Override
     public boolean hasNext() {
-        return bHasNext;
+        return hasNextVal;
     }
 
     @Override
