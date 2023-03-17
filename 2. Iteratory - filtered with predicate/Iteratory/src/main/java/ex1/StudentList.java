@@ -19,15 +19,15 @@ public class StudentList {
     public void printStudentsBetterThan(double minAvgGrade) {
         ArrayIterator<Student> iter = new ArrayIterator<>(studentsList);
         ArrayFilterIterator<Student> filterIter = new ArrayFilterIterator<>(iter, x -> x.getAvgGrades() > minAvgGrade);
-        while (iter.hasNext())
-            iter.next().print();
+        while (filterIter.hasNext())
+            filterIter.next().print();
     }
 
     public void printStudentsBelow3(double maxAvgGrade) {
         ArrayIterator<Student> iter = new ArrayIterator<>(studentsList);
         ArrayFilterIterator<Student> filterIter = new ArrayFilterIterator<>(iter, new StudentsBelowGratePredicate(maxAvgGrade));
-        while (iter.hasNext())
-            iter.next().print();
+        while (filterIter.hasNext())
+            filterIter.next().print();
     }
 
     public void changeStudentGrateAvg(int index, double newGrateAvg) {
@@ -39,8 +39,8 @@ public class StudentList {
             }
         });
 
-        while (iter.hasNext())
-            iter.next().setAvgGrades(newGrateAvg);
+        while (filterIterator.hasNext())
+            filterIterator.next().setAvgGrades(newGrateAvg);
     }
 
 }
