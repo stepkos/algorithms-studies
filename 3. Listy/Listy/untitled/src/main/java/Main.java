@@ -1,5 +1,19 @@
 public class Main {
 
+    public static void zad1() {
+        IList<Integer> list = new LinkedList<>();
+
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
+        System.out.println(list.get(3));
+        System.out.println(list.get(4));
+    }
+
     public static void zad2(int n, int k) {
 
         LinkedList<String> list = new LinkedList<>();
@@ -28,6 +42,7 @@ public class Main {
 
         System.out.println("Wyswietlanie listy rekursywnie");
         list.displayListRecursive();
+
         System.out.println("\nWyswietlanie listy rekursywnie odwrotnie");
         list.displayListRecursiveReverse();
 
@@ -40,27 +55,16 @@ public class Main {
 
     }
 
-    public static void zad1() {
-        IList<Integer> list = new LinkedList<>();
-
-        list.add(1);
-        list.add(2);
-        list.add(3);
-
-        System.out.println(list.get(0));
-        System.out.println(list.get(1));
-        System.out.println(list.get(2));
-        System.out.println(list.get(3));
-        System.out.println(list.get(4));
-    }
-
     public static void main(String[] args) {
 
-//        zad1();
-//        zad2(12, 3);
+        System.out.println("ZAD 1");
+        zad1();
+
+        System.out.println("\nZAD 2");
+        zad2(12, 3);
+
+        System.out.println("\nZAD 3");
         zad3();
-
-
 
     }
 }
