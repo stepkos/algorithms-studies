@@ -74,7 +74,20 @@ public class LinkedList<E> implements IList<E> {
             return true;
         }
 
-        Element prefElement = getElement(index-1);
+        int tmp_index = index-1;
+        tmp_index %= size;
+        Element currentElement = head;
+
+        while (tmp_index > 0 && currentElement != null) {
+            tmp_index--;
+            currentElement = currentElement.getNext();
+        }
+
+        if (currentElement==null)
+            throw new IndexOutOfBoundsException();
+        Element prefElement = currentElement;
+
+
         newElement.setNext(prefElement.getNext());
         prefElement.setNext(newElement);
         return true;
@@ -88,12 +101,30 @@ public class LinkedList<E> implements IList<E> {
 
     @Override
     public boolean contains(E element) {
-        return indexOf(element) >= 0;
+        int position = 0;
+        Element currentElement = head;
+        while (currentElement != null) {
+            if (currentElement.getValue().equals(element))
+                return position >= 0;
+            position++;
+            currentElement = currentElement.getNext();
+        }
+        return false;
     }
 
     @Override
     public E get(int index) {
-        return getElement(index % size).getValue();
+        int tmp_index = index % size;
+        Element currentElement = head;
+
+        while (tmp_index > 0 && currentElement != null) {
+            tmp_index--;
+            currentElement = currentElement.getNext();
+        }
+
+        if (currentElement==null)
+            throw new IndexOutOfBoundsException();
+        return currentElement.getValue();
     }
 
     @Override
@@ -134,7 +165,20 @@ public class LinkedList<E> implements IList<E> {
             return retValue;
         }
 
-        Element actElem = getElement(index-1);
+        int tmp_index = index-1;
+        tmp_index %= size;
+        Element currentElement = head;
+
+        while (tmp_index > 0 && currentElement != null) {
+            tmp_index--;
+            currentElement = currentElement.getNext();
+        }
+
+        if (currentElement==null)
+            throw new IndexOutOfBoundsException();
+        Element actElem = currentElement;
+
+
         if (actElem.getNext() == null)
             throw new IndexOutOfBoundsException();
         E retValue=actElem.getNext().getValue();
