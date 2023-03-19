@@ -18,7 +18,29 @@ public class Main {
 
     }
 
-    public static void demo() {
+    public static void zad3() {
+        LinkedList<String> list = new LinkedList<>();
+
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
+
+        System.out.println("Wyswietlanie listy rekursywnie");
+        list.displayListRecursive();
+        System.out.println("\nWyswietlanie listy rekursywnie odwrotnie");
+        list.displayListRecursiveReverse();
+
+        System.out.println("Oto skopiowana lista");
+        list.copyListRecursive().displayListRecursive();
+
+        System.out.println(list.sumRecursive());
+
+        System.out.println(list.sizeRecursive());
+
+    }
+
+    public static void zad1() {
         IList<Integer> list = new LinkedList<>();
 
         list.add(1);
@@ -34,8 +56,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        zad2(12, 3);
-//        demo();
+//        zad1();
+//        zad2(12, 3);
+        zad3();
+
+
 
     }
 }

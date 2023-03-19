@@ -1,6 +1,3 @@
-import java.util.Iterator;
-import java.util.ListIterator;
-
 public class LinkedList<E> implements IList<E> {
 
     private class Element {
@@ -157,6 +154,73 @@ public class LinkedList<E> implements IList<E> {
             System.out.println(element.getValue());
             element = element.getNext();
         }
+    }
+
+    // Metody dla zadania 3
+
+    public void displayListRecursive() {
+        displayListRecursive(head);
+    }
+
+    private void displayListRecursive(Element el) {
+        if (el == null) return;
+        System.out.println(el.getValue());
+        displayListRecursive(el.getNext());
+    }
+
+    public void displayListRecursiveReverse() {
+        displayListRecursiveReverse(head);
+    }
+
+    private void displayListRecursiveReverse(Element el) {
+        if (el == null) return;
+        displayListRecursiveReverse(el.getNext());
+        System.out.println(el.getValue());
+    }
+
+    public LinkedList<E> copyListRecursive() {
+        LinkedList<E> list = new LinkedList<>();
+        copyListRecursive(head, list);
+        return list;
+    }
+
+    private void copyListRecursive(Element el, LinkedList<E> list) {
+        if (el == null)
+            return;
+        list.add(el.getValue());
+        copyListRecursive(el.getNext(), list);
+    }
+
+    public E sumRecursive() {
+        if (head == null) return null;
+        return sumRecursive(head);
+    }
+
+    private E sumRecursive(Element el) {
+        if (el.getNext() == null)
+            return el.getValue();
+        return add(sumRecursive(el.getNext()), el.getValue());
+
+    }
+
+    private E add(E e1, E e2) {
+        if(e1 instanceof Integer && e2 instanceof Integer)
+            return (E) Integer.valueOf(((Integer)e1).intValue() + ((Integer)e2).intValue());
+        if(e1 instanceof Double && e2 instanceof Double)
+            return (E) Double.valueOf(((Double)e1).doubleValue() + ((Double)e2).doubleValue());
+        if(e1 instanceof String && e2 instanceof String)
+            return (E) ((String)e1 + (String)e2);
+        throw new UnsupportedOperationException("Unsupported for this type");
+    }
+
+    public int sizeRecursive() {
+        return sizeRecursive(head);
+    }
+
+    private int sizeRecursive(Element el) {
+        if (el == null)
+            return 0;
+        return 1 + sizeRecursive(el.getNext());
     }
 
 }
