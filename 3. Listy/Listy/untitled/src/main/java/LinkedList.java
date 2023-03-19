@@ -67,8 +67,8 @@ public class LinkedList<E> implements IList<E> {
 
     @Override
     public boolean insert(int index, E element) {
-        size++;
         index %= size;
+        size++;
         Element newElement = new Element(element);
 
         if (index == 0) {
@@ -129,8 +129,8 @@ public class LinkedList<E> implements IList<E> {
     @Override
     public E removePos(int index) {
         if (head == null) throw new IndexOutOfBoundsException();
-        size--;
         index %= size;
+        size--;
         if (index == 0) {
             E retValue = head.getValue();
             head = head.getNext();
