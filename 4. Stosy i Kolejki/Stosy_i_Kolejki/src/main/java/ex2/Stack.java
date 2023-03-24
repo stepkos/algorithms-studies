@@ -1,6 +1,8 @@
-package ex1;
+package ex2;
 
-public class Queue<E> implements IQueue<E> {
+import ex1.Queue;
+
+public class Stack<E> implements IStack<E> {
 
     private class Element {
         private E value;
@@ -31,21 +33,6 @@ public class Queue<E> implements IQueue<E> {
     Element head = null;
 
     @Override
-    public void push(E element) {
-        Element newElement = new Element(element);
-        if (head == null) {
-            head = newElement;
-            return;
-        }
-
-        Element currentElement = head;
-        while (currentElement.getNext() != null)
-            currentElement = currentElement.getNext();
-
-        currentElement.setNext(newElement);
-    }
-
-    @Override
     public E pop() {
         if (head == null)
             return null;
@@ -63,6 +50,13 @@ public class Queue<E> implements IQueue<E> {
     }
 
     @Override
+    public void push(E element) {
+        Element newElement = new Element(element);
+        newElement.setNext(head);
+        head = newElement;
+    }
+
+    @Override
     public int size() {
         int position = 0;
         Element currentElement = head;
@@ -77,6 +71,5 @@ public class Queue<E> implements IQueue<E> {
     public boolean isEmpty() {
         return head == null;
     }
-
 
 }
