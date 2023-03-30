@@ -4,6 +4,7 @@ import ex2.IStack;
 import ex2.Stack;
 import ex3.DoublyLinkedList;
 import ex4.SinkingStack;
+import ex5.PostfixCalculator;
 
 public class Main {
 
@@ -63,12 +64,18 @@ public class Main {
 
     }
 
+    public static void demo5() {
+        String path = "src/main/java/ex5/input.txt";
+        PostfixCalculator.processFile(path);
+    }
+
     public static void main(String[] args) {
 
 //        demo1();
 //        demo2();
 //        demo3();
-        demo4();
+//        demo4();
+        demo5();
 
     }
 }
