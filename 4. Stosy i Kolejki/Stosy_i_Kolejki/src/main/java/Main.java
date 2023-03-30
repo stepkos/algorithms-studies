@@ -3,6 +3,7 @@ import ex1.Queue;
 import ex2.IStack;
 import ex2.Stack;
 import ex3.DoublyLinkedList;
+import ex4.SinkingStack;
 
 public class Main {
 
@@ -44,11 +45,30 @@ public class Main {
         list1.display();
     }
 
+    public static void demo4() {
+        SinkingStack<Integer> sinkingStack = new SinkingStack<>(5);
+        sinkingStack.push(1);
+        sinkingStack.push(2);
+        sinkingStack.push(3);
+        sinkingStack.push(4);
+        sinkingStack.push(5);
+        sinkingStack.push(6);
+        sinkingStack.push(7);
+
+        System.out.println(sinkingStack.pop());
+        System.out.println(sinkingStack.pop());
+        System.out.println(sinkingStack.pop());
+        System.out.println(sinkingStack.pop());
+        System.out.println(sinkingStack.pop());
+
+    }
+
     public static void main(String[] args) {
 
 //        demo1();
 //        demo2();
-        demo3();
+//        demo3();
+        demo4();
 
     }
 }
