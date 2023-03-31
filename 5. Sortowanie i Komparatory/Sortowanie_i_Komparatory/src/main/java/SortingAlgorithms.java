@@ -1,26 +1,26 @@
-public class SortingAlgorithms {
+import java.util.Comparator;
 
-    public static void bubbleSort(int[] arr) {
+public class SortingAlgorithms<T> {
+
+    public void bubbleSort(T[] arr, Comparator<T> comparator) {
         int n = arr.length;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = 0; j < n-i-1; j++) {
-                if (arr[j] > arr[j+1]) {
-                    // swap arr[j] and arr[j+1]
-                    int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (comparator.compare(arr[j], arr[j + 1]) > 0) {
+                    T temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                 }
             }
         }
     }
 
-    public static void insertionSort(int[] arr) {
+    public void insertSort(T[] arr, Comparator<T> comparator) {
         int n = arr.length;
         for (int i = 1; i < n; ++i) {
-            int key = arr[i];
+            T key = arr[i];
             int j = i - 1;
-
-            while (j >= 0 && arr[j] > key) {
+            while (j >= 0 && comparator.compare(arr[j], key) > 0) {
                 arr[j + 1] = arr[j];
                 j = j - 1;
             }
@@ -28,29 +28,19 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void selectionSort(int[] arr) {
+    public void selectSort(T[] arr, Comparator<T> comparator) {
         int n = arr.length;
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < n - 1; i++) {
             int min_idx = i;
-            for (int j = i+1; j < n; j++) {
-                if (arr[j] < arr[min_idx]) {
+            for (int j = i + 1; j < n; j++) {
+                if (comparator.compare(arr[j], arr[min_idx]) < 0) {
                     min_idx = j;
                 }
             }
-            // swap arr[i] and arr[min_idx]
-            int temp = arr[min_idx];
+            T temp = arr[min_idx];
             arr[min_idx] = arr[i];
             arr[i] = temp;
         }
     }
-
-    public static void main(String[] args) {
-        int[] arr = {64, 34, 25, 12, 22, 11, 90};
-        bubbleSort(arr);
-//        insertionSort(arr);
-//        selectionSort(arr);
-        for (int j : arr) System.out.println(j);
-    }
-
 
 }
