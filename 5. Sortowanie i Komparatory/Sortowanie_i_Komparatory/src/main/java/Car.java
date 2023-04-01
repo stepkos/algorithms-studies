@@ -1,5 +1,6 @@
-public class Car {
+import java.util.Comparator;
 
+public class Car implements Comparable<Car> {
     private String brand;
     private String color;
     private int productionYear;
@@ -41,6 +42,17 @@ public class Car {
                 ", color='" + color + '\'' +
                 ", productionYear=" + productionYear +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Car o) {
+        int result = 0;
+        result = getBrand().compareTo(o.getBrand());
+        if (result != 0) return result;
+        result = getColor().compareTo(o.getColor());
+        if (result != 0) return result;
+        result = Integer.compare(getProductionYear(), o.getProductionYear());
+        return 0;
     }
 
 }
