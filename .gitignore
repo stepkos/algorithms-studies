@@ -5,6 +5,7 @@
 *target/
 *.class
 
+
 # Default ignored files
 */shelf/
 */workspace.xml
