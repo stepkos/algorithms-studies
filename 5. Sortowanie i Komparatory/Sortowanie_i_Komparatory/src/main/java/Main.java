@@ -8,6 +8,7 @@ public class Main {
             new Car("Mercedes", "Black", 2021),
             new Car("BMW", "Black", 2014),
             new Car("BMW", "Blue", 2017),
+            new Car("Mercedes", "Black", 2012),
             new Car("Opel", "White", 1997)
         };
     }
@@ -70,8 +71,8 @@ public class Main {
 
     public static void main(String[] args) {
 //        demo1();
-//        demo2();
-        demo3();
+        demo2();
+//        demo3();
     }
 
 }
