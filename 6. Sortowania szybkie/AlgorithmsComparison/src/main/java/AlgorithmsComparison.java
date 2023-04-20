@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class AlgorithmsComparison {
@@ -160,33 +162,59 @@ public class AlgorithmsComparison {
         arr[j] = temp;
     }
 
-    private static void demo1() {
-        Random rand = new Random();
-        int[] array = new int[20];
-        int[] sortedArray;
+    private static void demoRandom(int size) {
+        System.out.println("Demo random, size: " + size);
+        Random rand = new Random(0);
+        int[] array = new int[size];
 
-        System.out.println("Original array");
-        for (int i = 0; i < array.length; i++) {
-            array[i] = rand.nextInt(100);
-            System.out.print(array[i] + " ");
-        }
+        for (int i = 0; i < array.length; i++)
+            array[i] = rand.nextInt(1000);
 
-        sortedArray = selectionSort(array);
-
-        sortedArray = insertionSort(array);
-
-        sortedArray = mergeSort(array);
-
-        sortedArray = quickSort(array);
-
-//        System.out.println();
-//        for (int i = 0; i < sortedArray.length; i++)
-//            System.out.print(sortedArray[i] + " ");
-
+        selectionSort(array);
+        insertionSort(array);
+        mergeSort(array);
+        quickSort(array);
     }
 
+    private static void demoSorted(int size) {
+        System.out.println("Demo sorted, size: " + size);
+        Random rand = new Random(0);
+        int[] array = new int[size];
+
+        for (int i = 0; i < array.length; i++)
+            array[i] = rand.nextInt(1000);
+
+        Arrays.sort(array);
+
+        selectionSort(array);
+        insertionSort(array);
+        mergeSort(array);
+        quickSort(array);
+    }
+
+    private static void demoSortedReversed(int size) {
+        System.out.println("Demo sorted reversed, size: " + size);
+        Random rand = new Random(0);
+        int[] array = new int[size];
+
+        for (int i = 0; i < array.length; i++)
+            array[i] = rand.nextInt(1000);
+
+        Integer[] arrayInteger = Arrays.stream(array).boxed().toArray(Integer[]::new);
+        Arrays.sort(arrayInteger, Collections.reverseOrder());
+        array = Arrays.stream(arrayInteger).mapToInt(Integer::intValue).toArray();
+
+        selectionSort(array);
+        insertionSort(array);
+        mergeSort(array);
+        quickSort(array);
+    }
     public static void main(String[] args) {
-        demo1();
+
+        demoRandom(2048);
+        demoSorted(2048);
+        demoSortedReversed(2048);
+
     }
 
 }
