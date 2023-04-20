@@ -210,11 +210,12 @@ public class AlgorithmsComparison {
         quickSort(array);
     }
     public static void main(String[] args) {
-
-        demoRandom(2048);
-        demoSorted(2048);
-        demoSortedReversed(2048);
-
+        Arrays.stream(new int[]{8, 32, 128, 512, 2048})
+                .boxed().forEach(size -> {
+            demoRandom(size);
+            demoSorted(size);
+            demoSortedReversed(size);
+        });
     }
 
 }
