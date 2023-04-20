@@ -3,10 +3,14 @@ import java.util.Random;
 public class AlgorithmsComparison {
 
     public static int[] selectionSort(int[] array) {
+        int compCounter = 0;
+        int rewriteCounter = 0;
+
         int[] result = array.clone();
         for (int i = 0; i < result.length; i++) {
             int minIdx = i;
             for (int j = i + 1; j < result.length; j++) {
+                compCounter++;
                 if (result[j] < result[minIdx]) {
                     minIdx = j;
                 }
@@ -14,21 +18,36 @@ public class AlgorithmsComparison {
             int tmp = result[i];
             result[i] = result[minIdx];
             result[minIdx] = tmp;
+            rewriteCounter += 3;
         }
+
+        System.out.println("Comp counter: " + compCounter);
+        System.out.println("Rewrite Counter: " + rewriteCounter);
+
         return result;
     }
 
     public static int[] insertionSort(int[] array) {
+        int compCounter = 0;
+        int rewriteCounter = 0;
         int[] result = array.clone();
+
         for (int i = 1; i < result.length; i++) {
-            int j = i;
-            while (j > 0 && result[j - 1] > result[j]) {
-                int tmp = result[j];
-                result[j] = result[j - 1];
-                result[j - 1] = tmp;
+            int j = i - 1;
+            int key = result[i];
+            while (j >= 0 && result[j] > key) {
+                compCounter++;
+                result[j + 1] = result[j];
+                rewriteCounter++;
                 j--;
             }
+            result[j + 1] = key;
+            rewriteCounter++;
         }
+
+        System.out.println("Comp counter: " + compCounter);
+        System.out.println("Rewrite Counter: " + rewriteCounter);
+
         return result;
     }
 
@@ -115,18 +134,25 @@ public class AlgorithmsComparison {
     }
 
     private static void demo1() {
+        Random rand = new Random();
         int[] array = new int[20];
-        for (int i = 0; i < array.length; i++)
-            array[i] = new Random().nextInt(100);
+        int[] sortedArray;
 
-        int[] sortedArray = quickSort(array);
-
-        for (int i = 0; i < array.length; i++)
+        System.out.println("Original array");
+        for (int i = 0; i < array.length; i++) {
+            array[i] = rand.nextInt(100);
             System.out.print(array[i] + " ");
+        }
 
-        System.out.println();
-        for (int i = 0; i < sortedArray.length; i++)
-            System.out.print(sortedArray[i] + " ");
+        System.out.println("\n\nSelection sort");
+        sortedArray = selectionSort(array);
+
+        System.out.println("\nInsertion sort");
+        sortedArray = insertionSort(array);
+
+//        System.out.println();
+//        for (int i = 0; i < sortedArray.length; i++)
+//            System.out.print(sortedArray[i] + " ");
 
     }
 
