@@ -109,6 +109,18 @@ public class HeapPriorityQueue<T> {
         }
     }
 
+    public static <T extends Comparable<T>> void heapSort(T[] arr) {
+        HeapPriorityQueue<T> heap = new HeapPriorityQueue<>(Comparable::compareTo);
+
+        // Dodawanie elementów tablicy do kolejki
+        for (int i = 0; i < arr.length; i++)
+            heap.enqueue(arr[i]);
+
+        // Usuwanie elementów z kolejki i umieszczanie ich w tablicy w kolejności rosnącej
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = heap.dequeue();
+    }
+
     @Override
     public String toString() {
         return "HeapPriorityQueue{" +
