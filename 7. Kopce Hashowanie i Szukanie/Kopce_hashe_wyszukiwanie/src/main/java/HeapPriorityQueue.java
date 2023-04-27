@@ -43,6 +43,34 @@ public class HeapPriorityQueue<T> {
         return result;
     }
 
+    public void changePriority(int index, T value) {
+        if (index < 0 || index >= _list.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        _list.set(index, value);
+        swim(index);
+        sink(index);
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index >= _list.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        T result = _list.get(index);
+        int last = _list.size() - 1;
+        swap(index, last);
+        _list.remove(last);
+        if (index == last) {
+            return result;
+        }
+        T newValue = _list.get(index);
+        sink(index);
+        if (_list.get(index).equals(newValue)) {
+            swim(index);
+        }
+        return result;
+    }
+
     private void swap(int index1, int index2) {
         T temp = _list.get(index1);
         _list.set(index1, _list.get(index2));
@@ -72,5 +100,6 @@ public class HeapPriorityQueue<T> {
                 isDone = true;
         }
     }
+
 }
 
