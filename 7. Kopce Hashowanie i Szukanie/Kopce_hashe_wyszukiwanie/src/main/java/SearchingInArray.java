@@ -48,6 +48,23 @@ public class SearchingInArray {
         this.array = Arrays.stream(array).mapToInt(Integer::intValue).toArray();
     }
 
+    public int binarySearch(int value) {
+        int l = 0, r = array.length - 1;
+
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+
+            if (array[m] == value)
+                return m;
+            if (array[m] < value)
+                l = m + 1;
+            else
+                r = m - 1;
+        }
+
+        return -1;
+    }
+
     @Override
     public String toString() {
         return "SearchingInArray{" +

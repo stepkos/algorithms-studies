@@ -28,9 +28,10 @@ public class Main {
     }
 
     private static void demo2() {
-        SearchingInArray searchingInArray = new SearchingInArray(10);
+        SearchingInArray searchingInArray = new SearchingInArray(20);
         searchingInArray.sortArray();
         System.out.println(searchingInArray);
+        System.out.println(searchingInArray.binarySearch(42));
     }
 
     public static void main(String[] args) {

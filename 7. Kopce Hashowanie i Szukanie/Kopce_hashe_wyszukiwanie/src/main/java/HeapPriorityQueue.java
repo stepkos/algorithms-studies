@@ -110,7 +110,7 @@ public class HeapPriorityQueue<T> {
     }
 
     public static <T extends Comparable<T>> void heapSort(T[] arr) {
-        HeapPriorityQueue<T> heap = new HeapPriorityQueue<>(Comparable::compareTo);
+        HeapPriorityQueue<T> heap = new HeapPriorityQueue<>((a, b) -> b.compareTo(a));
 
         // Dodawanie elementów tablicy do kolejki
         for (int i = 0; i < arr.length; i++)
