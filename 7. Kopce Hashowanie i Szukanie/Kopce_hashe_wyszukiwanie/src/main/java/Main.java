@@ -34,14 +34,54 @@ public class Main {
         System.out.println(searchingInArray.binarySearch(42));
     }
 
+    private static void demo3() {
+        HashTable table = new HashTable(8, 0.75);
+
+        // Test put() method
+        table.put(1, "apple");
+        table.put(2, "banana");
+        table.put(3, "cherry");
+        table.put(4, "date");
+        table.put(5, "elderberry");
+        table.put(6, "fig");
+        table.put(7, "grape");
+        table.put(8, "honeydew");
+        table.put(9, "orange");
+        table.put(10, "pineapple");
+
+        // Test get() method
+        System.out.println(table.get(1)); // apple
+        System.out.println(table.get(5)); // elderberry
+        System.out.println(table.get(10)); // pineapple
+
+        // Test containsKey() method
+        System.out.println(table.containsKey(3)); // true
+        System.out.println(table.containsKey(6)); // true
+        System.out.println(table.containsKey(11)); // false
+
+        // Test size() method
+        System.out.println(table.size()); // 10
+
+        // Test isEmpty() method
+        System.out.println(table.isEmpty()); // false
+
+        // Test resize() method
+        table.resize(16);
+
+        // Test dump() method
+        table.dump();
+    }
+
     public static void main(String[] args) {
 
         // Zad 1
-        // zilustruj dzialanie
 //        demo1();
 
         // Zad 2
-        demo2();
+//        demo2();
+
+        // Zad 3
+        demo3();
 
     }
 
