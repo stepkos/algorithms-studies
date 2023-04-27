@@ -31,9 +31,12 @@ public class SearchingInArray {
     }
 
     public int linearSearch(int value) {
+        int compareCounter = 0;
         for (int i = 0; i < array.length; i++) {
+            compareCounter++;
             if (array[i] == value) return i;
         }
+        System.out.println("Linear search compare counter: " + compareCounter);
         return -1;
     }
 
@@ -49,9 +52,11 @@ public class SearchingInArray {
     }
 
     public int binarySearch(int value) {
+        int compareCounter = 0;
         int l = 0, r = array.length - 1;
 
         while (l <= r) {
+            compareCounter++;
             int m = l + (r - l) / 2;
 
             if (array[m] == value)
@@ -61,7 +66,7 @@ public class SearchingInArray {
             else
                 r = m - 1;
         }
-
+        System.out.println("Binary search compare counter: " + compareCounter);
         return -1;
     }
 
