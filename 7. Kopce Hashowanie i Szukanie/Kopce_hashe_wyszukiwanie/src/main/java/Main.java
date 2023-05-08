@@ -78,10 +78,10 @@ public class Main {
 //        demo1();
 
         // Zad 2
-//        demo2();
+        demo2();
 
         // Zad 3
-        demo3();
+//        demo3();
 
     }
 
