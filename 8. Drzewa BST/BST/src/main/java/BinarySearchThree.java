@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 class BinarySearchTree {
     static class Node {
@@ -229,7 +230,153 @@ class BinarySearchTree {
         printTree(node.right, newPrefix, false);
     }
 
-    public static void main(String[] args) {
+    public static void menu() {
+        Scanner scanner = new Scanner(System.in);
+        BinarySearchTree bst = new BinarySearchTree();
+        int choice = 0;
+
+        do {
+            System.out.println("1. Insert a node");
+            System.out.println("2. Inorder traversal");
+            System.out.println("3. Preorder traversal");
+            System.out.println("4. Postorder traversal");
+            System.out.println("5. Search for a node");
+            System.out.println("6. Find minimum value");
+            System.out.println("7. Find maximum value");
+            System.out.println("8. Get height of tree");
+            System.out.println("9. Get number of nodes in tree");
+            System.out.println("10. Get number of leaves in tree");
+            System.out.println("11. Print level order traversal");
+            System.out.println("12. Get successor of a node");
+            System.out.println("13. Get predecessor of a node");
+            System.out.println("14. Delete a node");
+            System.out.println("15. Print tree");
+            System.out.println("16. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the key to insert: ");
+                    int key = scanner.nextInt();
+                    bst.insert(key);
+                    System.out.println(key + " inserted successfully.");
+                    break;
+
+                case 2:
+                    System.out.print("Inorder traversal: ");
+                    bst.inorderTraversal(bst.root);
+                    System.out.println();
+                    break;
+
+                case 3:
+                    System.out.print("Preorder traversal: ");
+                    bst.preorderTraversal(bst.root);
+                    System.out.println();
+                    break;
+
+                case 4:
+                    System.out.print("Postorder traversal: ");
+                    bst.postorderTraversal(bst.root);
+                    System.out.println();
+                    break;
+
+                case 5:
+                    System.out.print("Enter the key to search: ");
+                    key = scanner.nextInt();
+                    BinarySearchTree.Node node = bst.search(bst.root, key);
+                    if (node != null)
+                        System.out.println("Node found: " + node.key);
+                    else
+                        System.out.println("Node not found.");
+                    break;
+
+                case 6:
+                    int min = bst.findMin(bst.root);
+                    System.out.println("Minimum value in tree: " + min);
+                    break;
+
+                case 7:
+                    int max = bst.findMax(bst.root);
+                    System.out.println("Maximum value in tree: " + max);
+                    break;
+
+                case 8:
+                    int height = bst.getHeight(bst.root);
+                    System.out.println("Height of tree: " + height);
+                    break;
+
+                case 9:
+                    int numNodes = bst.getNumNodes(bst.root);
+                    System.out.println("Number of nodes in tree: " + numNodes);
+                    break;
+
+                case 10:
+                    int numLeaves = bst.getNumLeaves(bst.root);
+                    System.out.println("Number of leaves in tree: " + numLeaves);
+                    break;
+
+                case 11:
+                    System.out.println("Level order traversal:");
+                    bst.printLevelOrder();
+                    break;
+
+                case 12:
+                    System.out.print("Enter the key of the node to find successor for: ");
+                    key = scanner.nextInt();
+                    node = bst.search(bst.root, key);
+                    if (node != null) {
+                        BinarySearchTree.Node successor = bst.successor(node);
+                        if (successor != null)
+                            System.out.println("Successor of " + key + " is " + successor.key);
+                        else
+                            System.out.println("No successor found for " + key);
+                    }
+                    else
+                        System.out.println("Node with key " + key + " not found");
+                    break;
+
+                case 13:
+                    System.out.print("Enter the key of the node to find predecessor for: ");
+                    key = scanner.nextInt();
+                    node = bst.search(bst.root, key);
+                    if (node != null) {
+                        BinarySearchTree.Node predecessor = bst.predecessor(node);
+                        if (predecessor != null)
+                            System.out.println("Predecessor of " + key + " is " + predecessor.key);
+                        else
+                            System.out.println("Predecessor not found.");
+                    }
+                    else
+                        System.out.println("Node not found.");
+                    break;
+
+                case 14:
+                    System.out.print("Enter the key to delete: ");
+                    key = scanner.nextInt();
+                    bst.deleteNode(key);
+                    System.out.println(key + " deleted successfully.");
+                    break;
+
+                case 15:
+                    System.out.println("Tree:");
+                    bst.printTree(bst.root, "", true);
+                    break;
+
+                case 16:
+                    System.out.println("Exiting program.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+
+            }
+        } while (choice != 16);
+
+    }
+
+    public static void demo() {
         BinarySearchTree bst = new BinarySearchTree();
 
         bst.insert(10);
@@ -239,46 +386,49 @@ class BinarySearchTree {
         bst.insert(7);
         bst.insert(3);
         bst.insert(8);
-//
-//        System.out.print("Inorder traversal: ");
-//        bst.inorderTraversal(bst.root);
-//        System.out.println();
-//
-//        System.out.print("Preorder traversal: ");
-//        bst.preorderTraversal(bst.root);
-//        System.out.println();
-//
-//        System.out.print("Postorder traversal: ");
-//        bst.postorderTraversal(bst.root);
-//        System.out.println();
-//
-//        // znajdujemy węzeł o kluczu 60 i wyświetlamy jego wartość
-//        Node foundNode = bst.search(bst.root, 60);
-//        System.out.println("Found node: " + foundNode.key);
-//
-//        // znajdujemy wartości minimalną i maksymalną
-//        int minValue = bst.findMin(bst.root);
-//        int maxValue = bst.findMax(bst.root);
-//        System.out.println("Minimum value: " + minValue);
-//        System.out.println("Maximum value: " + maxValue);
-//
-//        // wyznaczamy i wyświetlamy parametry drzewa
-//        int height = bst.getHeight(bst.root);
-//        int numNodes = bst.getNumNodes(bst.root);
-//        int numLeaves = bst.getNumLeaves(bst.root);
-//        System.out.println("Height: " + height);
-//        System.out.println("Number of nodes: " + numNodes);
-//        System.out.println("Number of leaves: " + numLeaves);
 
-//        bst.printByLevels();
-//        bst.printLevelOrder();
+        System.out.print("Inorder traversal: ");
+        bst.inorderTraversal(bst.root);
+        System.out.println();
 
-//        bst.deleteNode(5);
-//        bst.printLevelOrder();
+        System.out.print("Preorder traversal: ");
+        bst.preorderTraversal(bst.root);
+        System.out.println();
 
-//        System.out.println(bst.getHeight(bst.root));
-//        System.out.println(bst.getNumNodes(bst.root));
+        System.out.print("Postorder traversal: ");
+        bst.postorderTraversal(bst.root);
+        System.out.println();
+
+        // znajdujemy węzeł o kluczu 60 i wyświetlamy jego wartość
+        Node foundNode = bst.search(bst.root, 60);
+        System.out.println("Found node: " + foundNode.key);
+
+        // znajdujemy wartości minimalną i maksymalną
+        int minValue = bst.findMin(bst.root);
+        int maxValue = bst.findMax(bst.root);
+        System.out.println("Minimum value: " + minValue);
+        System.out.println("Maximum value: " + maxValue);
+
+        // wyznaczamy i wyświetlamy parametry drzewa
+        int height = bst.getHeight(bst.root);
+        int numNodes = bst.getNumNodes(bst.root);
+        int numLeaves = bst.getNumLeaves(bst.root);
+        System.out.println("Height: " + height);
+        System.out.println("Number of nodes: " + numNodes);
+        System.out.println("Number of leaves: " + numLeaves);
+
+        bst.printLevelOrder();
+
+        bst.deleteNode(5);
+        bst.printLevelOrder();
+
+        System.out.println(bst.getHeight(bst.root));
+        System.out.println(bst.getNumNodes(bst.root));
         bst.printTree();
-
     }
+
+    public static void main(String[] args) {
+        menu();
+    }
+
 }
