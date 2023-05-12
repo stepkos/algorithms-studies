@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class BinarySearchThree {
+class BinarySearchTree {
     static class Node {
         int key;
         Node left, right, parent;
@@ -15,7 +15,7 @@ class BinarySearchThree {
 
     Node root;
 
-    BinarySearchThree() {
+    BinarySearchTree() {
         root = null;
     }
 
@@ -232,7 +232,7 @@ class BinarySearchThree {
 
     public static void menu() {
         Scanner scanner = new Scanner(System.in);
-        BinarySearchThree bst = new BinarySearchThree();
+        BinarySearchTree bst = new BinarySearchTree();
         int choice = 0;
 
         do {
@@ -284,7 +284,7 @@ class BinarySearchThree {
                 case 5:
                     System.out.print("Enter the key to search: ");
                     key = scanner.nextInt();
-                    BinarySearchThree.Node node = bst.search(bst.root, key);
+                    BinarySearchTree.Node node = bst.search(bst.root, key);
                     if (node != null)
                         System.out.println("Node found: " + node.key);
                     else
@@ -326,7 +326,7 @@ class BinarySearchThree {
                     key = scanner.nextInt();
                     node = bst.search(bst.root, key);
                     if (node != null) {
-                        BinarySearchThree.Node successor = bst.successor(node);
+                        BinarySearchTree.Node successor = bst.successor(node);
                         if (successor != null)
                             System.out.println("Successor of " + key + " is " + successor.key);
                         else
@@ -341,7 +341,7 @@ class BinarySearchThree {
                     key = scanner.nextInt();
                     node = bst.search(bst.root, key);
                     if (node != null) {
-                        BinarySearchThree.Node predecessor = bst.predecessor(node);
+                        BinarySearchTree.Node predecessor = bst.predecessor(node);
                         if (predecessor != null)
                             System.out.println("Predecessor of " + key + " is " + predecessor.key);
                         else
@@ -377,7 +377,7 @@ class BinarySearchThree {
     }
 
     public static void demo() {
-        BinarySearchThree bst = new BinarySearchThree();
+        BinarySearchTree bst = new BinarySearchTree();
 
         bst.insert(10);
         bst.insert(5);
