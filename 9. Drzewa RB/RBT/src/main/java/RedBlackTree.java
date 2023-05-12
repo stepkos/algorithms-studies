@@ -1,14 +1,17 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 
-class RedBlackThree {
+public class RedBlackTree {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
-    static class Node {
+    private Node root;
+
+    private static class Node {
         int key;
-        Node left, right;
+        Node left;
+        Node right;
+        Node parent;
         boolean color;
 
         Node(int key, boolean color) {
@@ -17,82 +20,142 @@ class RedBlackThree {
         }
     }
 
-    Node root;
-
-    RedBlackThree() {
-        root = null;
+    public void insert(int key) {
+        Node node = new Node(key, RED);
+        if (root == null) {
+            root = node;
+        } else {
+            Node current = root;
+            Node parent = null;
+            while (current != null) {
+                parent = current;
+                int cmp = key - current.key;
+                if (cmp < 0) {
+                    current = current.left;
+                } else if (cmp > 0) {
+                    current = current.right;
+                } else {
+                    return;
+                }
+            }
+            node.parent = parent;
+            if (key - parent.key < 0) {
+                parent.left = node;
+            } else {
+                parent.right = node;
+            }
+            fixAfterInsert(node);
+        }
     }
 
-    public void insert(int key) {
-        root = insert(root, key);
+    private void fixAfterInsert(Node node) {
+        node.color = RED;
+        while (node != null && node != root && node.parent.color == RED) {
+            if (parentOf(node) == leftOf(parentOf(parentOf(node)))) {
+                Node y = rightOf(parentOf(parentOf(node)));
+                if (colorOf(y) == RED) {
+                    setColor(parentOf(node), BLACK);
+                    setColor(y, BLACK);
+                    setColor(parentOf(parentOf(node)), RED);
+                    node = parentOf(parentOf(node));
+                } else {
+                    if (node == rightOf(parentOf(node))) {
+                        node = parentOf(node);
+                        rotateLeft(node);
+                    }
+                    setColor(parentOf(node), BLACK);
+                    setColor(parentOf(parentOf(node)), RED);
+                    rotateRight(parentOf(parentOf(node)));
+                }
+            } else {
+                Node y = leftOf(parentOf(parentOf(node)));
+                if (colorOf(y) == RED) {
+                    setColor(parentOf(node), BLACK);
+                    setColor(y, BLACK);
+                    setColor(parentOf(parentOf(node)), RED);
+                    node = parentOf(parentOf(node));
+                } else {
+                    if (node == leftOf(parentOf(node))) {
+                        node = parentOf(node);
+                        rotateRight(node);
+                    }
+                    setColor(parentOf(node), BLACK);
+                    setColor(parentOf(parentOf(node)), RED);
+                    rotateLeft(parentOf(parentOf(node)));
+                }
+            }
+        }
         root.color = BLACK;
     }
 
-    private Node insert(Node node, int key) {
-        if (node == null) {
-            return new Node(key, RED);
-        }
-
-        if (key < node.key) {
-            node.left = insert(node.left, key);
-        } else if (key > node.key) {
-            node.right = insert(node.right, key);
-        } else {
-            // Element already exists, do nothing
-            return node;
-        }
-
-        // Perform rotations and color flips
-        if (isRed(node.right) && !isRed(node.left)) {
-            node = rotateLeft(node);
-        }
-        if (isRed(node.left) && isRed(node.left.left)) {
-            node = rotateRight(node);
-        }
-        if (isRed(node.left) && isRed(node.right)) {
-            flipColors(node);
-        }
-
-        return node;
+    private static boolean colorOf(Node node) {
+        return node == null ? BLACK : node.color;
     }
 
-    private boolean isRed(Node node) {
-        if (node == null) {
-            return false;
+    private static Node parentOf(Node node) {
+        return node == null ? null : node.parent;
+    }
+
+    private static void setColor(Node node, boolean color) {
+        if (node != null) {
+            node.color = color;
         }
-        return node.color == RED;
     }
 
-    private Node rotateLeft(Node node) {
-        Node newRoot = node.right;
-        node.right = newRoot.left;
-        newRoot.left = node;
-        newRoot.color = node.color;
-        node.color = RED;
-        return newRoot;
+    private static Node leftOf(Node node) {
+        return node == null ? null : node.left;
     }
 
-    private Node rotateRight(Node node) {
-        Node newRoot = node.left;
-        node.left = newRoot.right;
-        newRoot.right = node;
-        newRoot.color = node.color;
-        node.color = RED;
-        return newRoot;
+    private static Node rightOf(Node node) {
+        return node == null ? null : node.right;
     }
 
-    private void flipColors(Node node) {
-        node.color = RED;
-        node.left.color = BLACK;
-        node.right.color = BLACK;
+    private void rotateLeft(Node node) {
+        if (node != null) {
+            Node right = node.right;
+            node.right = right.left;
+            if (right.left != null) {
+                right.left.parent = node;
+            }
+            right.parent = node.parent;
+            if (node.parent == null) {
+                root = right;
+            } else if (node.parent.left == node) {
+                node.parent.left = right;
+            } else {
+                node.parent.right = right;
+            }
+            right.left = node;
+            node.parent = right;
+        }
+    }
+
+    private void rotateRight(Node node) {
+        if (node != null) {
+            Node left = node.left;
+            node.left = left.right;
+            if (left.right != null) {
+                left.right.parent = node;
+            }
+            left.parent = node.parent;
+            if (node.parent == null) {
+                root = left;
+            } else if (node.parent.left == node) {
+                node.parent.left = left;
+            } else {
+                node.parent.right = left;
+            }
+            left.right = node;
+            node.parent = left;
+        }
     }
 
     void inorderTraversal(Node root) {
         if (root != null) {
             inorderTraversal(root.left);
-//            System.out.print(isRed(root) ? "\033[91m" : "\033[0m");
-            System.out.print(root.key + " " + root.color + " ");
-//            System.out.print("\033[0m");
+            System.out.print(root.color ? "\033[91m" : "\033[0m");
+            System.out.print(root.key + " ");
+            System.out.print("\033[0m");
             inorderTraversal(root.right);
         }
     }
@@ -130,7 +193,6 @@ class RedBlackThree {
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
-
     int getNumNodes(Node root) {
         if (root == null) return 0;
         return getNumNodes(root.left) + getNumNodes(root.right) + 1;
@@ -155,7 +217,9 @@ class RedBlackThree {
             int levelSize = queue.size();
             for (int i = 0; i < levelSize; i++) {
                 Node node = queue.poll();
+                System.out.print(node.color ? "\033[91m" : "\033[0m");
                 System.out.print(node.key + " ");
+                System.out.print("\033[0m");
                 if (node.left != null)
                     queue.add(node.left);
 
@@ -389,17 +453,19 @@ class RedBlackThree {
 
 //        menu();
 
-        RedBlackThree redBlackThree = new RedBlackThree();
-        redBlackThree.insert(10);
-        redBlackThree.insert(5);
-        redBlackThree.insert(11);
-        redBlackThree.insert(6);
-        redBlackThree.insert(7);
-        redBlackThree.insert(3);
-        redBlackThree.insert(8);
-        redBlackThree.insert(9);
+        RedBlackTree redBlackTree = new RedBlackTree();
+        redBlackTree.insert(10);
+        redBlackTree.insert(5);
+        redBlackTree.insert(11);
+        redBlackTree.insert(6);
+        redBlackTree.insert(7);
+        redBlackTree.insert(3);
+        redBlackTree.insert(8);
+        redBlackTree.insert(9);
 
-        redBlackThree.inorderTraversal(redBlackThree.root);
+        redBlackTree.inorderTraversal(redBlackTree.root);
+        System.out.println("\n");
+        redBlackTree.printLevelOrder();
 
 
     }
