@@ -467,7 +467,8 @@ public class RedBlackTree {
         System.out.println("\n");
         redBlackTree.printLevelOrder();
 
-
+        System.out.println();
+        System.out.println(redBlackTree.getHeight(redBlackTree.root));
     }
 
 }
