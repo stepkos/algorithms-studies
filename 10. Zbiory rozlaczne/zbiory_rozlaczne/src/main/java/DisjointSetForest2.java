@@ -4,7 +4,7 @@ import java.util.Map;
 /**
  * Implementacja zbiorów rozłącznych na bazie lasu drzew rozłącznych z równoważeniem wysokości
  */
-class DisjointSetForest2 {
+class DisjointSetForest2 implements DisjointSetInterface {
     private Map<Integer, Node> nodeMap;
 
     private class Node {

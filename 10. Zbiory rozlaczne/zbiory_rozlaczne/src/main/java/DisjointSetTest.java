@@ -1,6 +1,9 @@
 public class DisjointSetTest {
     public static void main(String[] args) {
-        DisjointSet disjointSet = new DisjointSet();
+//        DisjointSetInterface disjointSet = new DisjointSet();
+//        DisjointSetInterface disjointSet = new DisjointSetForest();
+        DisjointSetInterface disjointSet = new DisjointSetForest2();
+//        DisjointSetInterface disjointSet = new DisjointSetList();
 
         // Tworzenie zbiorów
         disjointSet.makeSet(1);

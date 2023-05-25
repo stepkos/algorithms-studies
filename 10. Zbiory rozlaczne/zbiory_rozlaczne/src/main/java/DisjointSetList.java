@@ -4,7 +4,7 @@ import java.util.Map;
 /**
  * Implementacja zbiorów rozłącznych za pomocą listy wiązanej z wyważaniem
  */
-class DisjointSetList {
+class DisjointSetList implements DisjointSetInterface {
     private Map<Integer, Node> nodeMap;
 
     private class Node {
