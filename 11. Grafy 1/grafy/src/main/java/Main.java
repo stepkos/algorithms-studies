@@ -15,6 +15,7 @@ public class Main {
         graphList.addEdge(2, 3);
         graphList.addVertex();
         graphList.addEdge(3, 4);
+        graphList.printList();
 
         // Przykład użycia dla grafu skierowanego z użyciem macierzy sąsiedztwa
         DirectedGraphMatrix directedGraphMatrix = new DirectedGraphMatrix(4);
@@ -31,5 +32,6 @@ public class Main {
         directedGraphList.addEdge(2, 3);
         directedGraphList.addVertex();
         directedGraphList.addEdge(3, 4);
+//        directedGraphList.printList();
     }
 }

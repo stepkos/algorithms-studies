@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class DirectedGraphList {
+public class DirectedGraphList extends GraphList {
     private int numVertices;
-    private List<List<Integer>> adjacencyList;
 
     public DirectedGraphList(int numVertices) {
         this.numVertices = numVertices;

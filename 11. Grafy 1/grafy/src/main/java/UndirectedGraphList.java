@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class UndirectedGraphList {
+public class UndirectedGraphList extends GraphList {
     private int numVertices;
-    private List<List<Integer>> adjacencyList;
 
     public UndirectedGraphList(int numVertices) {
         this.numVertices = numVertices;
