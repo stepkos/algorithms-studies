@@ -1,12 +1,9 @@
 import java.util.Arrays;
 
-public class UndirectedGraphMatrix {
-    private int numVertices;
-    private boolean[][] adjacencyMatrix;
+public class UndirectedGraphMatrix extends GraphMatrix {
 
     public UndirectedGraphMatrix(int numVertices) {
-        this.numVertices = numVertices;
-        adjacencyMatrix = new boolean[numVertices][numVertices];
+        super(numVertices);
     }
 
     public void addVertex() {

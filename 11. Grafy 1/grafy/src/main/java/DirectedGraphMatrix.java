@@ -1,12 +1,9 @@
 import java.util.Arrays;
 
-public class DirectedGraphMatrix {
-    private int numVertices;
-    private boolean[][] adjacencyMatrix;
+public class DirectedGraphMatrix extends GraphMatrix {
 
     public DirectedGraphMatrix(int numVertices) {
-        this.numVertices = numVertices;
-        adjacencyMatrix = new boolean[numVertices][numVertices];
+        super(numVertices);
     }
 
     public void addVertex() {
