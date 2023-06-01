@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class UndirectedGraphList extends GraphList {
     private int numVertices;
@@ -25,4 +24,48 @@ public class UndirectedGraphList extends GraphList {
             throw new IllegalArgumentException("Invalid vertex index");
         }
     }
+
+    public void BFS(int startVertex) {
+        boolean[] visited = new boolean[numVertices];
+        Queue<Integer> queue = new LinkedList<>();
+
+        visited[startVertex] = true;
+        queue.add(startVertex);
+
+        while (!queue.isEmpty()) {
+            int vertex = queue.poll();
+            System.out.println("Visited: " + vertex);
+
+            List<Integer> neighbors = adjacencyList.get(vertex);
+            for (int neighbor : neighbors) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    public void DFS(int startVertex) {
+        boolean[] visited = new boolean[numVertices];
+        Stack<Integer> stack = new Stack<>();
+
+        visited[startVertex] = true;
+        stack.push(startVertex);
+
+        while (!stack.isEmpty()) {
+            int vertex = stack.pop();
+            System.out.println("Visited: " + vertex);
+
+            List<Integer> neighbors = adjacencyList.get(vertex);
+            for (int neighbor : neighbors) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor);
+                }
+            }
+        }
+    }
+
+
 }
