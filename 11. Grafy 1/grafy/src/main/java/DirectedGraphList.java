@@ -1,8 +1,6 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DirectedGraphList extends GraphList {
-    private int numVertices;
 
     public DirectedGraphList(int numVertices) {
         this.numVertices = numVertices;
@@ -24,4 +22,5 @@ public class DirectedGraphList extends GraphList {
             throw new IllegalArgumentException("Invalid vertex index");
         }
     }
+
 }
