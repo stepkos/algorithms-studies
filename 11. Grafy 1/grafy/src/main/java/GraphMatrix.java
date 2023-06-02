@@ -21,7 +21,7 @@ public abstract class GraphMatrix {
         while (!queue.isEmpty()) {
             int vertex = queue.poll();
             System.out.println("Visited: " + vertex);
-            System.out.println("Queue: " + queue);
+//            System.out.println("Queue: " + queue);
 
 
             for (int i = 0; i < numVertices; i++) {
@@ -43,7 +43,7 @@ public abstract class GraphMatrix {
 
             if (!visited[vertex]) {
                 System.out.println("Visited: " + vertex);
-                System.out.println("Stack: " + stack);
+//                System.out.println("Stack: " + stack);
                 visited[vertex] = true;
             }
 

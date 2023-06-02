@@ -1,8 +1,8 @@
 public class Main {
     public static void main(String[] args) {
 
-//        UndirectedGraphList graph = new UndirectedGraphList(6);
-        UndirectedGraphMatrix graph = new UndirectedGraphMatrix(6);
+        UndirectedGraphList graph = new UndirectedGraphList(6);
+//        UndirectedGraphMatrix graph = new UndirectedGraphMatrix(6);
         graph.addEdge(0, 1);
         graph.addEdge(0, 2);
         graph.addEdge(1, 3);
@@ -14,6 +14,9 @@ public class Main {
 
         System.out.println("\nDFS:");
         graph.DFS(0);
+
+        graph.printList();
+//        graph.displayMatrix();
 
     }
 }

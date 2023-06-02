@@ -27,7 +27,7 @@ public abstract class GraphList {
         while (!queue.isEmpty()) {
             int vertex = queue.poll();
             System.out.println("Visited: " + vertex);
-//            System.out.println("Queue: " + queue);
+            System.out.println("Queue: " + queue);
 
             List<Integer> neighbors = adjacencyList.get(vertex);
             for (int neighbor : neighbors) {
@@ -49,7 +49,7 @@ public abstract class GraphList {
         while (!stack.isEmpty()) {
             int vertex = stack.pop();
             System.out.println("Visited: " + vertex);
-//            System.out.println("Stack: " + stack);
+            System.out.println("Stack: " + stack);
 
             List<Integer> neighbors = adjacencyList.get(vertex);
             for (int neighbor : neighbors) {
