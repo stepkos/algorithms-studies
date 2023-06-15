@@ -30,6 +30,10 @@ class Graph {
         return subsets[i].parent;
     }
 
+
+
+
+
     void Union(subset subsets[], int x, int y) {
         int xroot = find(subsets, x);
         int yroot = find(subsets, y);
