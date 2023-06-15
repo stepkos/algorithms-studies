@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Graph {
+class Kruskal {
     class Edge implements Comparable<Edge> {
         int src, dest, weight;
 
@@ -16,7 +16,7 @@ class Graph {
     int V, E;
     Edge edge[];
 
-    Graph(int v, int e) {
+    Kruskal(int v, int e) {
         V = v;
         E = e;
         edge = new Edge[E];
@@ -29,10 +29,6 @@ class Graph {
             subsets[i].parent = find(subsets, subsets[i].parent);
         return subsets[i].parent;
     }
-
-
-
-
 
     void Union(subset subsets[], int x, int y) {
         int xroot = find(subsets, x);
@@ -89,28 +85,28 @@ class Graph {
     public static void main(String[] args) {
         int V = 4;
         int E = 5;
-        Graph graph = new Graph(V, E);
+        Kruskal kruskal = new Kruskal(V, E);
 
-        graph.edge[0].src = 0;
-        graph.edge[0].dest = 1;
-        graph.edge[0].weight = 10;
+        kruskal.edge[0].src = 0;
+        kruskal.edge[0].dest = 1;
+        kruskal.edge[0].weight = 10;
 
-        graph.edge[1].src = 0;
-        graph.edge[1].dest = 2;
-        graph.edge[1].weight = 6;
+        kruskal.edge[1].src = 0;
+        kruskal.edge[1].dest = 2;
+        kruskal.edge[1].weight = 6;
 
-        graph.edge[2].src = 0;
-        graph.edge[2].dest = 3;
-        graph.edge[2].weight = 5;
+        kruskal.edge[2].src = 0;
+        kruskal.edge[2].dest = 3;
+        kruskal.edge[2].weight = 5;
 
-        graph.edge[3].src = 1;
-        graph.edge[3].dest = 3;
-        graph.edge[3].weight = 15;
+        kruskal.edge[3].src = 1;
+        kruskal.edge[3].dest = 3;
+        kruskal.edge[3].weight = 15;
 
-        graph.edge[4].src = 2;
-        graph.edge[4].dest = 3;
-        graph.edge[4].weight = 4;
+        kruskal.edge[4].src = 2;
+        kruskal.edge[4].dest = 3;
+        kruskal.edge[4].weight = 4;
 
-        graph.KruskalMST();
+        kruskal.KruskalMST();
     }
 }

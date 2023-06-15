@@ -1,8 +1,6 @@
-import java.util.*;
 import java.lang.*;
-import java.io.*;
 
-class MST {
+class Prim {
     private static final int V = 5;
 
     int minKey(int key[], Boolean mstSet[]) {
@@ -51,7 +49,7 @@ class MST {
     }
 
     public static void main(String[] args) {
-        MST t = new MST();
+        Prim t = new Prim();
         int graph[][] = new int[][] { { 0, 2, 0, 6, 0 },
                 { 2, 0, 3, 8, 5 },
                 { 0, 3, 0, 0, 7 },
