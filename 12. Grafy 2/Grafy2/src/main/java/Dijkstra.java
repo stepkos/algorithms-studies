@@ -85,6 +85,18 @@ class Dijkstra {
         dijkstra.addEdge(2, 4, 5);
         dijkstra.addEdge(3, 4, 2);
 
+//        dijkstra.addEdge(0, 2, 2);
+//        dijkstra.addEdge(0, 4, 5);
+//        dijkstra.addEdge(0, 7, 1);
+//        dijkstra.addEdge(2, 4, 1);
+//        dijkstra.addEdge(4, 7, 6);
+//        dijkstra.addEdge(2, 5, 1);
+//        dijkstra.addEdge(0, 1, 3);
+//        dijkstra.addEdge(7, 6, 2);
+//        dijkstra.addEdge(6, 1, 3);
+//        dijkstra.addEdge(2, 3, 1);
+//        dijkstra.addEdge(6, 3, 4);
+
         int source = 0;
         dijkstra.dijkstra(source);
     }
