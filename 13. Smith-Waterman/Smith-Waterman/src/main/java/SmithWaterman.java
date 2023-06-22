@@ -58,8 +58,8 @@ public class SmithWaterman {
         }
 
         System.out.println("Dopasowanie: ");
-        System.out.println(alignment1.toString());
-        System.out.println(alignment2.toString());
+        System.out.println(alignment1);
+        System.out.println(alignment2);
 
         return maxScore;
     }
