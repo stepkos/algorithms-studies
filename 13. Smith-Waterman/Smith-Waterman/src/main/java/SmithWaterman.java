@@ -24,6 +24,7 @@ public class SmithWaterman {
                 int insert = matrix[i][j - 1] + gapScore;
 
                 matrix[i][j] = Math.max(0, Math.max(match, Math.max(delete, insert)));
+                System.out.print(matrix[i][j] + "\t");
 
                 if (matrix[i][j] > maxScore) {
                     maxScore = matrix[i][j];
@@ -31,6 +32,7 @@ public class SmithWaterman {
                     maxJ = j;
                 }
             }
+            System.out.println();
         }
 
         // Odtworzenie lokalnego dopasowania
@@ -65,11 +67,15 @@ public class SmithWaterman {
     }
 
     public static void main(String[] args) {
-        String sequence1 = "AGTACGCA";
-        String sequence2 = "TATGC";
-        int matchScore = 2;
+//        String sequence1 = "AGTACGCA";
+//        String sequence2 = "TATGC";
+        String sequence1 = "AGACTACT";
+        String sequence2 = "TACATAGTA";
+//        int matchScore = 2;
+        int matchScore = 1;
         int mismatchScore = -1;
         int gapScore = -1;
+//        int gapScore = -2;
 
         int score = smithWaterman(sequence1, sequence2, matchScore, mismatchScore, gapScore);
         System.out.println("Najwyższy wynik: " + score);
