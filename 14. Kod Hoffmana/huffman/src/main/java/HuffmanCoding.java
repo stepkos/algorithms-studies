@@ -106,9 +106,8 @@ public class HuffmanCoding {
         System.out.println("Encoded text: " + encodedText);
 
         Map<Character, Integer> charFrequencies = new HashMap<>();
-        for (char c : text.toCharArray()) {
+        for (char c : text.toCharArray())
             charFrequencies.put(c, charFrequencies.getOrDefault(c, 0) + 1);
-        }
 
         HuffmanNode root = buildHuffmanTree(charFrequencies);
         String decodedText = decode(encodedText, root);
